@@ -12,7 +12,6 @@ class UserService {
     constructor() {
         this.addUser = async (user) => {
             user.password = await bcrypt_1.default.hash(user.password, 10);
-            user.role = 2;
             return this.userRepository.save(user);
         };
         this.checkUser = async (user) => {
@@ -22,7 +21,8 @@ class UserService {
                 if (comparePassword) {
                     let payload = {
                         username: userFound.name,
-                        id: userFound.id
+                        id: userFound.id,
+                        role: userFound.role
                     };
                     return jsonwebtoken_1.default.sign(payload, auth_1.secret, {
                         expiresIn: 36000 * 1000

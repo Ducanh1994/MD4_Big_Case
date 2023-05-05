@@ -13,7 +13,6 @@ class UserService {
     }
     addUser = async (user) => {
         user.password = await bcrypt.hash(user.password,10);
-        user.role = 2;
         return this.userRepository.save(user);
     }
     checkUser = async (user) => {
@@ -23,7 +22,8 @@ class UserService {
             if (comparePassword) {
                 let payload = {
                     username: userFound.name,
-                    id: userFound.id
+                    id: userFound.id,
+                    role: userFound.role
                 }
                 return jwt.sign(payload,secret,{
                     expiresIn: 36000*1000

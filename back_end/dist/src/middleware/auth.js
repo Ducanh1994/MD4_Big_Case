@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
                 if (err) {
                     res.status(401).json({
                         err: err.message,
-                        message: 'You are not allowed to access!'
+                        message: 'You are not allowed to access 1!'
                     });
                 }
                 else {
@@ -26,13 +26,13 @@ const auth = (req, res, next) => {
         }
         else {
             res.status(401).json({
-                message: 'You are not allowed to access!'
+                message: 'You are not allowed to access 2!'
             });
         }
     }
     else {
         res.status(401).json({
-            message: 'You are not allowed to access!'
+            message: 'You are not allowed to access 3!'
         });
     }
 };

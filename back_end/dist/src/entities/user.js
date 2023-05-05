@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const order_1 = require("./order");
-const role_1 = require("./role");
 let User = class User {
 };
 __decorate([
@@ -28,13 +27,13 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "role", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => order_1.Order, (order) => order.user),
     __metadata("design:type", Array)
 ], User.prototype, "orders", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => role_1.Role, (role) => role.users),
-    __metadata("design:type", role_1.Role)
-], User.prototype, "role", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);
