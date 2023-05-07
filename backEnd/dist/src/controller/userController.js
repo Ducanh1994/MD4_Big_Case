@@ -21,6 +21,7 @@ class UserController {
             else {
                 user.password = await bcrypt_1.default.hash(user.password, 10);
                 let newUser = await this.userService.createNewUser(user);
+                await this.userService.createNewOrder(user.id);
                 res.status(201).json(newUser);
             }
         };
@@ -38,17 +39,25 @@ class UserController {
                 else {
                     let payload = {
                         username: userFind.username,
-                        role: userFind.role
+                        role: userFind.role,
+                        userId: userFind.id
                     };
                     let token = jsonwebtoken_1.default.sign(payload, auth_1.SECRET, {
                         expiresIn: 36000
                     });
+                    console.log(token);
                     res.status(200).json({
                         token: token,
                         role: userFind.role
                     });
                 }
             }
+        };
+        this.byProduct = async (req, res) => {
+            let userId = req['decode'].userId;
+            let productId = req.query.id;
+            let order = await this.userService.addToOrder(userId, productId);
+            res.status(200).json(order);
         };
         this.userService = userService_1.default;
     }

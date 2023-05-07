@@ -26,6 +26,32 @@ class ProductService {
             });
             return products;
         };
+        this.getByBrand = async (id) => {
+            let products = await this.productRepository.find({
+                relations: {
+                    brand: true,
+                },
+                where: {
+                    brand: {
+                        id: id
+                    }
+                }
+            });
+            return products;
+        };
+        this.getByColor = async (id) => {
+            let products = await this.productRepository.find({
+                relations: {
+                    color: true,
+                },
+                where: {
+                    color: {
+                        id: id
+                    }
+                }
+            });
+            return products;
+        };
         this.add = async (product) => {
             let productNew = await this.productRepository.save(product);
             return productNew;

@@ -23,6 +23,7 @@ class UserController {
         } else {
             user.password = await bcrypt.hash(user.password, 10)
             let newUser = await this.userService.createNewUser(user)
+            await this.userService.createNewOrder(user.id);
             res.status(201).json(newUser)
         }
     }
@@ -39,11 +40,13 @@ class UserController {
             }else{
                 let payload = {
                     username: userFind.username,
-                    role: userFind.role
+                    role: userFind.role,
+                    userId: userFind.id
                 }
                 let token = jwt.sign(payload, SECRET, {
                     expiresIn: 36000
                 });
+                console.log(token)
                 res.status(200).json({
                     token: token,
                     role: userFind.role
@@ -51,6 +54,32 @@ class UserController {
             }
         }
     }
+
+
+    byProduct = async (req: Request, res: Response) => {
+        let userId = req['decode'].userId;
+        let productId = req.query.id
+        let order = await this.userService.addToOrder(userId, productId);
+        res.status(200).json(order)
+    }
+
+
+
+
+
+
+
+
 }
 
+
+
+
+
+
+
+
+
 export default new UserController();
+
+// Nếu có token thì sẽ vào luôn còn không có thì vào trang khách

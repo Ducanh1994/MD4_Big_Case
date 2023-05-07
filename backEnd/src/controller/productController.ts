@@ -27,11 +27,24 @@ class ProductController {
 
     findProductByCategory = async (req: Request, res: Response) => {
         let id = req.params.id
-        console.log(id)
         let products = await this.productService.getByCategory(id);
+        res.status(200).json(products)
+    }
+
+    findProductByColor = async (req: Request, res: Response) => {
+        let id = req.params.id
+        let products = await this.productService.getByColor(id);
+        res.status(200).json(products)
+    }
+
+    findProductByBrand = async (req: Request, res: Response) => {
+        let id = req.params.id
+        let products = await this.productService.getByBrand(id);
         console.log(products)
         res.status(200).json(products)
     }
+
+
 
 
     addProduct  = async (req: Request, res: Response) => {
@@ -41,15 +54,14 @@ class ProductController {
     }
 
     deleteProductPost  = async (req: Request, res: Response) => {
+        console.log(req)
         let id = req.params.id
-        console.log(id)
         await this.productService.deleteProduct(id);
         res.status(200).json({message: 'delete success'})
     }
 
     showFormAdd = async (req: Request, res: Response) => {
         let categoryList = await this.categoryService.getAll();
-        console.log(categoryList)
         res.status(200).json(categoryList)
     }
     showFormUpdate = async (req: Request, res: Response) => {
@@ -70,12 +82,8 @@ class ProductController {
         let keyword = req.query.search
         console.log(keyword)
         let products = await this.productService.findProductByKeyword(keyword)
-        console.log(products)
         res.status(200).json(products)
     }
-
-
-
 
 }
 

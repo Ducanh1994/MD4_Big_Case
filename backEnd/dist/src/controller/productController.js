@@ -18,8 +18,17 @@ class ProductController {
         };
         this.findProductByCategory = async (req, res) => {
             let id = req.params.id;
-            console.log(id);
             let products = await this.productService.getByCategory(id);
+            res.status(200).json(products);
+        };
+        this.findProductByColor = async (req, res) => {
+            let id = req.params.id;
+            let products = await this.productService.getByColor(id);
+            res.status(200).json(products);
+        };
+        this.findProductByBrand = async (req, res) => {
+            let id = req.params.id;
+            let products = await this.productService.getByBrand(id);
             console.log(products);
             res.status(200).json(products);
         };
@@ -29,14 +38,13 @@ class ProductController {
             res.status(200).json(productNew);
         };
         this.deleteProductPost = async (req, res) => {
+            console.log(req);
             let id = req.params.id;
-            console.log(id);
             await this.productService.deleteProduct(id);
             res.status(200).json({ message: 'delete success' });
         };
         this.showFormAdd = async (req, res) => {
             let categoryList = await this.categoryService.getAll();
-            console.log(categoryList);
             res.status(200).json(categoryList);
         };
         this.showFormUpdate = async (req, res) => {
@@ -55,7 +63,6 @@ class ProductController {
             let keyword = req.query.search;
             console.log(keyword);
             let products = await this.productService.findProductByKeyword(keyword);
-            console.log(products);
             res.status(200).json(products);
         };
         this.productService = productService_1.default;

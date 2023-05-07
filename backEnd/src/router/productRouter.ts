@@ -5,10 +5,9 @@ import {decentralization} from "../middleware/decentralization";
 
 const productRouter = Router();
 productRouter.get('/', productController.findAll);
-// category/${id}
 productRouter.get('/category/:id', productController.findProductByCategory);
-
-
+productRouter.get('/color/:id', productController.findProductByColor);
+productRouter.get('/brand/:id', productController.findProductByBrand);
 
 productRouter.get('/search', productController.find);
 

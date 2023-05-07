@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const category_1 = require("./category");
 const color_1 = require("./color");
 const brand_1 = require("./brand");
+const oderDetail_1 = require("./oderDetail");
 let Product = class Product {
 };
 __decorate([
@@ -44,6 +45,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => brand_1.Brand, (brand) => { brand.products; }),
     __metadata("design:type", brand_1.Brand)
 ], Product.prototype, "brand", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => oderDetail_1.OrderDetail, (orderDetail) => orderDetail.idProduct),
+    __metadata("design:type", Array)
+], Product.prototype, "orderDetail", void 0);
 Product = __decorate([
     (0, typeorm_1.Entity)()
 ], Product);

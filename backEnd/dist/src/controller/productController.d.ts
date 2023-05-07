@@ -7,6 +7,8 @@ declare class ProductController {
     constructor();
     findAll: (req: Request, res: Response) => Promise<void>;
     findProductByCategory: (req: Request, res: Response) => Promise<void>;
+    findProductByColor: (req: Request, res: Response) => Promise<void>;
+    findProductByBrand: (req: Request, res: Response) => Promise<void>;
     addProduct: (req: Request, res: Response) => Promise<void>;
     deleteProductPost: (req: Request, res: Response) => Promise<void>;
     showFormAdd: (req: Request, res: Response) => Promise<void>;

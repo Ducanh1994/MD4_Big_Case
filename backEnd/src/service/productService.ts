@@ -38,6 +38,35 @@ class ProductService {
         return products;
     }
 
+    getByBrand = async (id) => {
+        let products = await this.productRepository.find({
+            relations: {
+                brand:true,
+            },
+            where: {
+                brand: {
+                    id: id
+                }
+            }
+        });
+        return products;
+    }
+
+    getByColor = async (id) => {
+        let products = await this.productRepository.find({
+            relations: {
+                color:true,
+            },
+            where: {
+                color: {
+                    id: id
+                }
+            }
+        });
+        return products;
+    }
+
+
 
 
 
