@@ -15,10 +15,10 @@ export class Home extends Component {
                 }
             ],
             inputName: '',
-            inputPrice: ''
+            inputPrice: '',
+            editIndex: -1
         }
     }
-
     add = () => {
         this.setState(
             {
@@ -32,19 +32,16 @@ export class Home extends Component {
             }
         )
     }
-
     changeValue = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     delete = (index) => {
         const listProduct = [...this.state.products];
         listProduct.splice(index,1)
         this.setState({products:listProduct})
     }
-
     edit = (index) => {
         this.setState({
             inputName: this.state.products[index].name,
@@ -52,7 +49,6 @@ export class Home extends Component {
             editIndex: index,
         })
     }
-
     update = () => {
         const listProduct = this.state.products.slice();
         const {inputName,inputPrice,editIndex} = this.state;
@@ -67,7 +63,6 @@ export class Home extends Component {
             editIndex: -1
         });
     }
-
     render() {
         return (
             <>
