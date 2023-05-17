@@ -11,7 +11,7 @@ const listUser = [
     }
 ]
 
-export function Home1(props) {
+export function Demo1(props) {
     const [users, setUsers] = useState([]);
 
     let [id, setId] = useState('');
