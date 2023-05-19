@@ -14,7 +14,7 @@ export function Edit() {
             console.log(res.data)
             }
         )
-    }, [])
+    }, [id])
     return (
         <>
             <Formik
