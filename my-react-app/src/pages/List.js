@@ -1,10 +1,13 @@
-
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import {Link} from "react-router-dom";
+import {getStudents} from "../redux/services/studentService";
 
 export function List() {
-    const students = useSelector((state) => state.students);
-    console.log(students)
+    const dispatch = useDispatch();
+    const state = useSelector((state) => {
+        return state
+    });
+    console.log(state)
 
     return (
         <>
@@ -19,7 +22,7 @@ export function List() {
                                 <td colSpan={2}>Action</td>
                             </tr>
                             {
-                                students.map(item => (
+                                state.map(item => (
                                     <tr>
                                         <td>{item.id}</td>
                                         <td>{item.name}</td>
@@ -34,6 +37,9 @@ export function List() {
                             }
 
                         </table>
+                        <button onClick={() => {
+                            dispatch(getStudents());
+                        }}>Click</button>
                     </>
             }
 
