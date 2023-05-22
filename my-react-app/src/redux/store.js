@@ -1,8 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import studentReducer from "./students/studentSlice";
+import {configureStore} from "@reduxjs/toolkit";
+import productReducer from "./products/productSlice";
+import userReducer from "./user/userSlice";
 
-export default configureStore({
+const store = configureStore({
     reducer: {
-        students: studentReducer,
-    },
-});
+        products: productReducer,
+        user: userReducer
+    }
+})
+
+export default store;

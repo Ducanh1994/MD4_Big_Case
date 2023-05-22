@@ -1,22 +1,23 @@
-import './App.css';
 import {Route, Routes} from "react-router-dom";
-import {Home} from "./pages/Home";
-import {List} from "./pages/List";
-import {Edit} from "./pages/Edit";
-import {Create} from "./pages/Create";
+import {Login} from "./pages/user/Login";
+import {Register} from "./pages/user/Register";
+import {Home} from "./pages/home/Home";
+import {List} from "./pages/home/products/List";
+import {Create} from "./pages/home/products/Create";
 
 function App() {
-  return (
-      <>
-          <Routes>
-              <Route path={'/home'} element={<Home/>}>
-                  <Route path={'/home/list'} element={<List/>}/>
-                  <Route path={'/home/create'} element={<Create/>}/>
-                  <Route path={'/home/edit/:id'} element={<Edit/>}/>
-              </Route>
-          </Routes>
-      </>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path={'login'} element={<Login/>}/>
+                <Route path={'register'} element={<Register/>}/>
+                <Route path={'home'} element={<Home/>}>
+                    <Route path={''} element={<List/>}/>
+                    <Route path={'create'} element={<Create/>}/>
+                </Route>
+            </Routes>
+        </>
+    );
 }
 
 export default App;
