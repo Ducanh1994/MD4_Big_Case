@@ -6,11 +6,13 @@ export function List() {
     const dispatch = useDispatch();
     const products = useSelector(({products}) => {
         console.log(products.list)
+        console.log(1)
         return products.list;
     })
 
     useEffect(() => {
         dispatch(getProduct());
+        console.log(2)
     }, [])
     return (
         <>
