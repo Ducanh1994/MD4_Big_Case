@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getProduct} from "../../services/productService";
+import {deleteProduct, findProductById, getProduct} from "../../services/productService";
 
 const productSlice = createSlice({
     name: 'products',
@@ -9,7 +9,16 @@ const productSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(getProduct.fulfilled, (state, action) => {
             state.list = action.payload;
-            console.log(3)
+        })
+        builder.addCase(deleteProduct.fulfilled,(state,action) => {
+            const id = action.payload;
+            const index = state.list.findIndex(item => item.id === id);
+            if (index !== -1){
+                state.list.splice(index,1)
+            }
+        })
+        builder.addCase(findProductById.fulfilled,(state,action) => {
+             state.list = action.payload;
         })
     }
 });
