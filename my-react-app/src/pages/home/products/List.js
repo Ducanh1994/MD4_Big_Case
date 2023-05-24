@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 
 export function List() {
     const dispatch = useDispatch();
-    const products = useSelector(({products}) => {
-        return products.list;
+    const products = useSelector((state) => {
+        return state.products.list;
     })
 
     useEffect(() => {

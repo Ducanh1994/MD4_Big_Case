@@ -1,30 +1,30 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import axios from "axios";
+import customAPI from "./customAPI";
 
 export const getProduct = createAsyncThunk(
     'products/getProducts',
     async () => {
-        const res = await axios.get('http://localhost:3001/products');
+        const res = await customAPI().get('products');
         return res.data;
     }
 )
 export const deleteProduct = createAsyncThunk(
     'products/deleteProducts',
     async (id) => {
-        await axios.delete(`http://localhost:3001/products/${id}`);
+        await customAPI().delete(`products/${id}`);
         return id;
     }
 )
 export const addProduct = createAsyncThunk(
     'products/addProducts',
     async (product) => {
-        await axios.post(`http://localhost:3001/products`, product)
+        await customAPI().post(`products`, product)
     }
 )
 export const findProductById = createAsyncThunk(
     'products/findProducts',
     async (id) => {
-        const res = await axios.get(`http://localhost:3001/products/${id}`);
+        const res = await customAPI().get(`products/${id}`);
         return res.data;
     }
 )
@@ -32,6 +32,6 @@ export const editProduct = createAsyncThunk(
     'products/editProduct',
     async (arg, thunkAPI) => {
         console.log(arg)
-        await axios.put(`http://localhost:3001/products/${arg.id}`, arg.product)
+        await customAPI().put(`products/${arg.id}`, arg.product)
     }
 )
